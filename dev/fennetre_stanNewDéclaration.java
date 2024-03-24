@@ -4,13 +4,15 @@ import java.awt.event.*;
 
 public class fennetre_stanNewDéclaration extends JFrame implements ActionListener{
     private JLabel monEtiquette;
+    private JLabel labelDate;
     private JButton buttonmesdeclaration;
     private JButton buttonmesnouveldec;
     private JButton buttonmescerfa;
     private JButton buttonmescompte;
     private JButton buttonmesdéconection;
-    private JPanel c1;
-    private bdd bdd;
+    private JTextField DateY;
+    private JComboBox DateM;
+    // private bdd bdd;
     private utilisateur currentuser;
     public fennetre_stanNewDéclaration(utilisateur currentuser){
         this.currentuser = currentuser;
@@ -19,7 +21,7 @@ public class fennetre_stanNewDéclaration extends JFrame implements ActionListen
         setLocation(50,20);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLayout(null);
-        bdd = new bdd(Constants.url,Constants.log_id,Constants.log_mdp);
+        // bdd = new bdd(Constants.url,Constants.log_id,Constants.log_mdp);
        
         setResizable(false);
 
@@ -31,11 +33,13 @@ public class fennetre_stanNewDéclaration extends JFrame implements ActionListen
         monEtiquette.setBackground(Color.yellow);
         monEtiquette.setFont(Constants.police);
         
+        
         buttonmesdeclaration = new JButton("mes déclaration");                     //céation d'un bouton
         buttonmesdeclaration.setBounds(0,40,Constants.buttonwidth,40);
         buttonmesdeclaration.setBackground(Color.gray);
         buttonmesdeclaration.setForeground(Color.black);
         buttonmesdeclaration.addActionListener(this);
+
 
         buttonmesnouveldec = new JButton("nouvel déclaration");                     //céation d'un bouton
         buttonmesnouveldec.setBounds(Constants.buttonwidth,40,Constants.buttonwidth,40);
@@ -43,17 +47,20 @@ public class fennetre_stanNewDéclaration extends JFrame implements ActionListen
         buttonmesnouveldec.setForeground(Color.black);
         buttonmesnouveldec.addActionListener(this);
 
+
         buttonmescerfa = new JButton("télécharger mes  CERFA ");                     //céation d'un bouton
         buttonmescerfa.setBounds(2*Constants.buttonwidth,40,Constants.buttonwidth,40);
         buttonmescerfa.setBackground(Color.gray);
         buttonmescerfa.setForeground(Color.black);
         buttonmescerfa.addActionListener(this);
 
+
         buttonmescompte = new JButton("mon Compte ");                     //céation d'un bouton
         buttonmescompte.setBounds(3*Constants.buttonwidth,40,Constants.buttonwidth,40);
         buttonmescompte.setBackground(Color.gray);
         buttonmescompte.setForeground(Color.black);
         buttonmescompte.addActionListener(this);
+
 
         buttonmesdéconection = new JButton("se déconnecter ");                     //céation d'un bouton
         buttonmesdéconection.setBounds(4*Constants.buttonwidth,40,Constants.buttonwidth,40);
@@ -62,26 +69,54 @@ public class fennetre_stanNewDéclaration extends JFrame implements ActionListen
         buttonmesdéconection.addActionListener(this);
 
 
+        labelDate = new JLabel("Date");                         //céation d'un label
+        labelDate.setBounds(40,150,300,30);
+        labelDate.setForeground(Color.black);
+        labelDate.setBackground(Color.yellow);
+        labelDate.setFont(Constants.police);
 
 
+        DateY = new JTextField("yyyy");                          //céation d'une zone d'entrée de texte
+        DateY.setBackground(Constants.BackGround2);
+        DateY.setForeground(Color.GRAY);
+        DateY.setFont(Constants.police);
+        DateY.setBounds(100,150,60,30);
+        DateY.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (DateY.getText().equals("yyyy")) {
+                    DateY.setText("");
+                    DateY.setForeground(Color.BLACK);
+                }
+            }
+            public void focusLost(FocusEvent e) {
+                if (DateY.getText().isEmpty()) {
+                    DateY.setForeground(Color.GRAY);
+                    DateY.setText("yyyy");
+                }
+            }
+        });
+        
+
+        DateM = new JComboBox<String>(new String[]{"janvier","fevrier","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","decembre"});
+        DateM.setBounds(170,150,150,30);
+        DateM.setBackground(Constants.BackGround2);
+        DateM.setFont(Constants.police);
 
 
 
         
         
-        c1 = new JPanel();
-        c1.add(monEtiquette);
-        c1.add(buttonmesdeclaration);
-        c1.add(buttonmesnouveldec);
-        c1.add(buttonmescerfa);
-        c1.add(buttonmescompte);
-        c1.add(buttonmesdéconection);
-        c1.setLayout(null);
+        this.add(monEtiquette);
+        this.add(labelDate);
+        this.add(buttonmesdeclaration);
+        this.add(buttonmesnouveldec);
+        this.add(buttonmescerfa);
+        this.add(buttonmescompte);
+        this.add(buttonmesdéconection);
+        this.add(DateY);
+        this.add(DateM);
+        this.setLayout(null);
 
-
-        c1.setBounds(0,0,Constants.width,Constants.height);
-        c1.setBackground(Constants.BackGround);
-        add(c1);
         setVisible(true);
 
     }

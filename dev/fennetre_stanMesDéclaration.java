@@ -10,7 +10,7 @@ public class fennetre_stanMesDéclaration extends JFrame implements ActionListen
     private JButton buttonmescompte;
     private JButton buttonmesdéconection;
     private JTable tableau;
-    private bdd bdd;
+    // private bdd bdd;
     private utilisateur currentuser;
     private String[][] list;
     public fennetre_stanMesDéclaration(utilisateur currentuser){
@@ -20,7 +20,7 @@ public class fennetre_stanMesDéclaration extends JFrame implements ActionListen
         setLocation(50,20);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLayout(null);
-        bdd = new bdd(Constants.url,Constants.log_id,Constants.log_mdp);
+        // bdd = new bdd(Constants.url,Constants.log_id,Constants.log_mdp);
        
         setResizable(false);
 
@@ -62,11 +62,11 @@ public class fennetre_stanMesDéclaration extends JFrame implements ActionListen
         buttonmesdéconection.setForeground(Color.black);
         buttonmesdéconection.addActionListener(this);
 
-        this.list = bdd.FindMesDeclaration(currentuser);                                // crétion d'un tableau
-        String columnNames[] = { "ID", "n° compte", "Date" , "Motif", "Trajet", "Kms", "Péages", "Repas", "Hebergement", "remboursée"};
-        tableau = new JTable(list, columnNames);
-        JScrollPane scroll = new JScrollPane(tableau);
-        scroll.setBounds(20,100,Constants.width-80,Math.min(list.length*16+23,Constants.height-199));
+        // this.list = bdd.FindMesDeclaration(currentuser);                                // crétion d'un tableau
+        // String columnNames[] = { "ID", "n° compte", "Date" , "Motif", "Trajet", "Kms", "Péages", "Repas", "Hebergement", "remboursée"};
+        // tableau = new JTable(list, columnNames);
+        // JScrollPane scroll = new JScrollPane(tableau);
+        // scroll.setBounds(20,100,Constants.width-80,Math.min(list.length*16+23,Constants.height-199));
         
         
         this.add(monEtiquette);
@@ -75,7 +75,7 @@ public class fennetre_stanMesDéclaration extends JFrame implements ActionListen
         this.add(buttonmescerfa);
         this.add(buttonmescompte);
         this.add(buttonmesdéconection);
-        this.add(scroll);
+        // this.add(scroll);
         this.setLayout(null);
 
 
